@@ -28,7 +28,7 @@ def find_Seats(theater, num):
 			curr_seats = []
 			while (need > 0) and (j < 5):
 				if theater[i][j] == 0:
-					curr_seats.append((i, j))
+					curr_seats.append(seat_dict[(i, j)])
 					need -= 1
 					j += 1
 				else: 
