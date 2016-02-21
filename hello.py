@@ -107,7 +107,7 @@ def available():
     num_seats = request.args['messages']
     
     status = hello()
-    script = 'update seats set status =' + str(status) + ' where row_num=1 and seat_num=2'
+    script = 'update seats set status =' + str(status) + ' where row_num=1 and seat_num=1'
     cur = g.db.execute(script)
      
     cur = g.db.execute('select * from seats where row_num=0')
@@ -130,6 +130,7 @@ def available():
     #return str(find_Seats(seat_list,int(num_seats)))
     return flask.render_template('available.html', entries=find_Seats(seat_list,int(num_seats)))
     #return str(seat_list)
+    #return str(status)
 
 @APP.route('/', methods = ['POST'])
 def seats():
