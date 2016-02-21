@@ -74,7 +74,11 @@
 
     <!-- Table Section -->
     <section id="table">
-      
+        <table>
+            {% for entry in entries %}
+            <tr><td>{{entry}}</td></tr>
+            {% endfor %}
+        </table>
     </section>
 
     <!-- Footer -->

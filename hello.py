@@ -6,13 +6,56 @@ from flask import Flask, request, session, g, redirect, url_for, \
      abort, render_template, flash
 from contextlib import closing
 
-
 DATABASE = '/tmp/whack_2016.db'
 DEBUG = True
 
 # Create the application.
 APP = flask.Flask(__name__)
 APP.config.from_object(__name__)
+
+
+
+
+def find_Seats(theater, num):
+	if num > 5: return 
+	seats = []
+	for (i, row) in enumerate(theater): #for each row in the theater
+		for (j, seat) in enumerate(row): #for each seat in the row
+			need = num
+			curr_seats = []
+			while (need > 0) and (j < 5):
+				if theater[i][j] == 0:
+					curr_seats.append((i, j))
+					need -= 1
+					j += 1
+				else: 
+					curr_seats = []
+					need = num
+					j += 2
+				if len(curr_seats) ==  num:
+					if curr_seats not in seats:
+						seats.append(curr_seats)
+						curr_seats = []
+						need = 0
+	return seats 
+
+def availableSeats(theater):
+	#return the first seat in a sequence of n available seats
+	seats = []
+	for (i, row) in enumerate(theater): 
+		for (j, seat) in enumerate(row):
+			if theater[i][j] == 0:
+				seats.append((i, j))
+	return seats
+
+def seatStatus(theater, row, col): 
+	return  theater[row][col] #theater is a 2d array; return 0 if empty, 1 if seat is full
+
+# # Changes status of seat from empty to full and vice versa, when the sensor status changes
+def changeStatus(theater, row, col): 
+	current = seatStatus(theater, row, col) #when we actually have a database running, we'll need to access the value from there
+	theater[row][col] = 1 if current == 0 else 0 #but make sure to actually change the value in the database
+
 
 def init_db():
     with closing(connect_db()) as db:
@@ -58,13 +101,33 @@ def about():
 def available():
     """ Displays the about page accessible at '/available'
     """
-    return flask.render_template('available.html')
+    #return str(findSeats.findSeats(2))
+    num_seats = request.args['messages']
+    
+    cur = g.db.execute('select * from seats where row_num=0')
+    seat_list = []
+    seat_list.append([row[2] for row in cur.fetchall()])
+    
+    cur = g.db.execute('select * from seats where row_num=1')
+    seat_list.append([row[2] for row in cur.fetchall()])
+    
+    cur = g.db.execute('select * from seats where row_num=2')
+    seat_list.append([row[2] for row in cur.fetchall()])
+
+    cur = g.db.execute('select * from seats where row_num=3')
+    seat_list.append([row[2] for row in cur.fetchall()])
+
+    cur = g.db.execute('select * from seats where row_num=4')
+    seat_list.append([row[2] for row in cur.fetchall()])
+   
+    #return str(find_Seats(seat_list,int(num_seats)))
+    return flask.render_template('available.html', entries=find_Seats(seat_list,int(num_seats)))
 
 @APP.route('/', methods = ['POST'])
 def seats():
     num_seats = flask.request.form['num_seats']
     print("The number of seats is '" + num_seats + "'")
-    return flask.redirect('/available')
+    return flask.redirect(url_for('.available',messages = num_seats))
 
 #returns nested list of movie seat statuses
 @APP.route('/test')
@@ -85,7 +148,9 @@ def get_seats():
     cur = g.db.execute('select * from seats where row_num=4')
     seat_list.append([row[2] for row in cur.fetchall()])
     
-    return str(seat_list)
+    return str(find_Seats(seat_list,5))
+
+
 
 
 
