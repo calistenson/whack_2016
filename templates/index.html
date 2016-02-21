@@ -80,12 +80,20 @@
                     <h2>How many seats do you need?</h2>
                 </div>
             </div>
-            <div class="row">
-                <div class="col-lg-8 col-lg-offset-2">
+            <div class="row control-group">
+                <div class="form-group col-xs-12 floating-label-form-group controls">
                     <form id="#form" method="post" name="#form">
-                        <label>Seats :</label>
-                        <input id="num_seats" name="num_seats" placeholder='Your Seats' type='text'>
-                        <input id='btn' name="submit" type='submit' value='Submit'>
+                        <div class="form-group col-xs-12 floating-label-form-group controls">
+                            <label>Seats</label>
+                            <input type="text" name="num_seats" class="form-control" placeholder="Number of Seats" id="num_seats" required data-validation-required-message="Please enter your name.">
+                            <p class="help-block text-danger"></p>
+                        </div>
+            
+                        <div class="row">
+                            <div class="form-group col-xs-12">
+                                <button type="submit" class="btn btn-success btn-lg">Submit</button>
+                            </div>
+                        </div>
                     </form>
                 </div>
             </div>
@@ -117,9 +125,6 @@
     <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"></script>
     <script src="/static/js/classie.js"></script>
     <script src="/static/js/cbpAnimatedHeader.js"></script>
-
-    <!-- Seat Form JavaScript -->
-    <script src="/static/js/formelt.js"></script>
 
 
 </body>
