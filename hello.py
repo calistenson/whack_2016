@@ -23,6 +23,9 @@ def init_db():
 def connect_db():
     return sqlite3.connect(APP.config['DATABASE'])
 
+
+
+
 @APP.before_request
 def before_request():
     g.db = connect_db()
@@ -45,6 +48,26 @@ def index():
     """
     return flask.render_template('index.html')
 
+#returns nested list of movie seat statuses
+@APP.route('/test')
+def get_seats():
+    cur = g.db.execute('select * from seats where row_num=0')
+    seat_list = []
+    seat_list.append([row[2] for row in cur.fetchall()])
+    
+    cur = g.db.execute('select * from seats where row_num=1')
+    seat_list.append([row[2] for row in cur.fetchall()])
+    
+    cur = g.db.execute('select * from seats where row_num=2')
+    seat_list.append([row[2] for row in cur.fetchall()])
+
+    cur = g.db.execute('select * from seats where row_num=3')
+    seat_list.append([row[2] for row in cur.fetchall()])
+
+    cur = g.db.execute('select * from seats where row_num=4')
+    seat_list.append([row[2] for row in cur.fetchall()])
+    
+    return str(seat_list)
 
 if __name__ == '__main__':
     init_db()
