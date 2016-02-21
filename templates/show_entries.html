@@ -1,0 +1,9 @@
+<html>
+    <body>
+        {% for entry in entries %}
+        <li>{{entry.row_num}} {{entry.seat_num}} Status: {{entry.status}}</li>
+        {% else %}
+        No entries
+        {% endfor %}
+    </body>
+</html>
