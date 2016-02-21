@@ -22,7 +22,7 @@ a:focus,
 a:active,
 a.active {
     outline: 0;
-    color: #18bc9c;
+    color: #811400;
 }
 
 h1,
@@ -63,7 +63,7 @@ hr.star-light {
 
 hr.star-light:after {
     color: #fff;
-    background-color: #18bc9c;
+    background-color: #811400;
 }
 
 hr.star-primary {
@@ -184,7 +184,7 @@ section h2 {
 
 section.success {
     color: #fff;
-    background: #18bc9c;
+    background: #811400;
 }
 
 section.success a,
@@ -415,5 +415,14 @@ footer .footer-below {
 
 .seats-field{
     border: #811400;
+}
+
+.about-title{
+    color: #d98c00;
+}
+
+.group{
+    display: block;
+    margin: 0 auto;
 }
 
