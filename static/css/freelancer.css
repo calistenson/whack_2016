@@ -369,10 +369,14 @@ footer .footer-below {
 .btn-success{
     background: #d98c00;
     border: 2px solid #d98c00;  
+    display: block;
+    margin: 0 auto;
 }
 .btn-primary{
     background: #d98c00;
     border: 2px solid #d98c00;
+    display: block;
+    margin: 0 auto;
 }
 .btn-primary:hover{
     background: #d98c00;
@@ -388,12 +392,16 @@ footer .footer-below {
     text-align: center;
     font-size: 20px;
     line-height: 45px;
+    display: block;
+    margin: 0 auto;
+
 }
 
 .btn:focus,
 .btn:active,
 .btn.active {
     outline: 0;
+
 }
 
 .scroll-top {
@@ -430,3 +438,12 @@ footer .footer-below {
     margin: 0 auto;
 }
 
+.form-control{
+    display: block;
+    margin: 0 auto;
+    width: 170px;
+}
+
+input.placeholder{
+    text-align: center;
+}
