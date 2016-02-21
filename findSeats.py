@@ -30,7 +30,12 @@ def findSeats(theater, num):
 						curr_seats = []
 						need = 0
 	return seats 
+	if num > 5: return #there are only 5 seats in each row (for now)
+	result = [] 
+	for i in range (5): #assess each row, looking for n consecutive seats.
+		
 
+	return result 
 
 def availableSeats(theater):
 	#return the first seat in a sequence of n available seats
@@ -49,9 +54,10 @@ def changeStatus(theater, row, col):
 	current = seatStatus(theater, row, col) #when we actually have a database running, we'll need to access the value from there
 	theater[row][col] = 1 if current == 0 else 0 #but make sure to actually change the value in the database
 
-#print findSeats(cinema, 2)
 print findSeats(cinema, 1)
 
+#print findSeats(cinema, 2)
+print cinema
 
 #available= availableSeats(theater) #get a list of all available seats
 		# row = []
