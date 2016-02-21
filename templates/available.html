@@ -1,6 +1,7 @@
-  <!-- About Section -->
-  <html>
-  <head>
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
 
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -29,9 +30,12 @@
     <![endif]-->
 
 </head>
-<body id="page-top" class="success">
-    <nav class="navbar navbar-default navbar-about">
-        <div class="navbar-about">
+
+<body id="page-top" class="index">
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-default navbar-fixed-top">
+        <div class="container">
             <!-- Brand and toggle get grouped for better mobile display -->
             <div class="navbar-header page-scroll">
                 <a class="navbar-brand" href="/">Find Seats</a>
@@ -43,31 +47,51 @@
                     <li class="hidden">
                         <a href="#page-top"></a>
                     </li>
+                    <li class="page-scroll">
+                        <a href="/about">About</a>
+                    </li>
                 </ul>
             </div>
             <!-- /.navbar-collapse -->
         </div>
         <!-- /.container-fluid -->
     </nav>
-    <section class="success" id="about">
+
+    <!-- Header -->
+    <header>
         <div class="container">
             <div class="row">
-                <div class="col-lg-12 text-center">
-                    <h2 class="about-title">About</h2>
-                    <hr class="star-light">
+                <div class="col-lg-12">
+                    <img class="img-responsive" src="/static/img/profile.png" alt="">
+                    <div class="intro-text">
+                        <span class="name">Available Seats</span>
+                    </div>
                 </div>
-            </div>
-            <div class="row">
-                <div class="col-lg-4 col-lg-offset-2">
-                    <p>Finding seats at the movies can be hard. Especially when the theater is crowded, and you need to find enough seats for you and your friends. SeatMe solves that problem. When you get to the theater, tell us how many seats you need. Given data we collect via sensors on each seat in the theater, we'll provide you with a number of options where you and your friends can sit and enjoy the movie together. </p>
-                </div>
-                <div class="col-lg-4">
-                    <p>This project was implemented at Wellesley College's Camp WHACK Spring 2016 by Kim Asenbeck, Sam Chin, Kevin Guo, Sung Park, and Cali Stenson. The project was built using Flask, Python, HTML/CSS, and Arduino.</p>
-                </div>
-                <img src="/static/img/group.png" align="middle" class="group">
             </div>
         </div>
+    </header>
+  
+
+    <!-- Table Section -->
+    <section id="table">
+      
     </section>
+
+    <!-- Footer -->
+    <footer class="text-center">
+        <div class="footer-below">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12">
+                        Copyright &copy; whackers 2016
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+
+
     <!-- jQuery -->
     <script src="/static/js/jquery.js"></script>
 
@@ -79,12 +103,10 @@
     <script src="/static/js/classie.js"></script>
     <script src="/static/js/cbpAnimatedHeader.js"></script>
 
-    <!-- Contact Form JavaScript -->
-    <script src="/static/js/jqBootstrapValidation.js"></script>
-    <script src="/static/js/contact_me.js"></script>
+    <!-- Seat Form JavaScript -->
+    <script src="/static/js/formelt.js"></script>
 
-    <!-- Custom Theme JavaScript -->
-    <script src="/static/js/freelancer.js"></script>
 
- </body>
+</body>
+
 </html>

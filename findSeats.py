@@ -1,22 +1,36 @@
 #Kim Asenbeck
 #WHACK
 #2-20-16
-#findSeats
+#findSeats.py
 
 from hello import get_seats
 
 #cinema = [[0, 0, 0, 1, 0], [0, 1, 0, 0, 1], [0, 1, 1, 0, 1], [1, 0, 1, 0, 1], [1, 1, 1, 0, 1]]
 cinema = get_seats()
 
-'''
 def findSeats(theater, num):
-	if num > 5: return #there are only 5 seats in each row (for now)
-	result = [] 
-	for i in range (5): #assess each row, looking for n consecutive seats.
-		
+	if num > 5: return 
+	seats = []
+	for (i, row) in enumerate(theater): #for each row in the theater
+		for (j, seat) in enumerate(row): #for each seat in the row
+			need = num
+			curr_seats = []
+			while (need > 0) and (j < 5):
+				if theater[i][j] == 0:
+					curr_seats.append((i, j))
+					need -= 1
+					j += 1
+				else: 
+					curr_seats = []
+					need = num
+					j += 2
+				if len(curr_seats) ==  num:
+					if curr_seats not in seats:
+						seats.append(curr_seats)
+						curr_seats = []
+						need = 0
+	return seats 
 
-	return result 
-'''
 
 def availableSeats(theater):
 	#return the first seat in a sequence of n available seats
@@ -25,7 +39,7 @@ def availableSeats(theater):
 		for (j, seat) in enumerate(row):
 			if theater[i][j] == 0:
 				seats.append((i, j))
-	return seats;
+	return seats
 
 def seatStatus(theater, row, col): 
 	return  theater[row][col] #theater is a 2d array; return 0 if empty, 1 if seat is full
@@ -36,7 +50,8 @@ def changeStatus(theater, row, col):
 	theater[row][col] = 1 if current == 0 else 0 #but make sure to actually change the value in the database
 
 #print findSeats(cinema, 2)
-print cinema
+print findSeats(cinema, 1)
+
 
 #available= availableSeats(theater) #get a list of all available seats
 		# row = []

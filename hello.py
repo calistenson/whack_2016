@@ -68,6 +68,24 @@ def get_seats():
     seat_list.append([row[2] for row in cur.fetchall()])
     
     return str(seat_list)
+@APP.route('/about')
+def about():
+    """ Displays the about page accessible at '/about'
+    """
+    return flask.render_template('about.html')
+
+@APP.route('/available')
+def available():
+    """ Displays the about page accessible at '/available'
+    """
+    return flask.render_template('available.html')
+
+@APP.route('/', methods = ['POST'])
+def seats():
+    num_seats = flask.request.form['num_seats']
+    print("The number of seats is '" + num_seats + "'")
+    return flask.redirect('/available')
+
 
 if __name__ == '__main__':
     init_db()
