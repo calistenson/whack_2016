@@ -5,6 +5,8 @@ import sqlite3
 from flask import Flask, request, session, g, redirect, url_for, \
      abort, render_template, flash
 from contextlib import closing
+from Arduino import hello
+
 
 DATABASE = '/tmp/whack_2016.db'
 DEBUG = True
@@ -104,6 +106,10 @@ def available():
     #return str(findSeats.findSeats(2))
     num_seats = request.args['messages']
     
+    status = hello()
+    script = 'update seats set status =' + str(status) + ' where row_num=2 and seat_num=2'
+    cur = g.db.execute(script)
+     
     cur = g.db.execute('select * from seats where row_num=0')
     seat_list = []
     seat_list.append([row[2] for row in cur.fetchall()])
@@ -119,9 +125,11 @@ def available():
 
     cur = g.db.execute('select * from seats where row_num=4')
     seat_list.append([row[2] for row in cur.fetchall()])
-   
+    
+    #cur = g.db.execute('update seats set status= 23 where row_num=2 and seat_num=2')
     #return str(find_Seats(seat_list,int(num_seats)))
-    return flask.render_template('available.html', entries=find_Seats(seat_list,int(num_seats)))
+    #return flask.render_template('available.html', entries=find_Seats(seat_list,int(num_seats)))
+    return str(seat_list)
 
 @APP.route('/', methods = ['POST'])
 def seats():
@@ -148,7 +156,8 @@ def get_seats():
     cur = g.db.execute('select * from seats where row_num=4')
     seat_list.append([row[2] for row in cur.fetchall()])
     
-    return str(find_Seats(seat_list,5))
+    return str(seat_list)
+    #return str(find_Seats(seat_list,5))
 
 
 
